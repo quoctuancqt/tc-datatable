@@ -1,0 +1,9 @@
+<tc-datatable [columns]="configs.columns" [gridOptions]="configs.gridOptions" (callback)="onPagerChange($event)" #grid>
+  <ng-template let-row="row">
+    <td>{{row['firstName']}}</td>
+    <td>{{row['lastName']}}</td>
+    <td class="cell-action-group">
+      <button type="button" class="btn btn-primary">Edit</button>
+    </td>
+  </ng-template>
+</tc-datatable>

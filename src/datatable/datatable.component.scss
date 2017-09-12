@@ -1,0 +1,16 @@
+.pagination{
+    cursor: pointer;
+}
+.watermark {
+    position: absolute;
+    transform: translateY(-50%);
+    opacity: 0.25;
+    font-size: 2em;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
+    margin-top:12px;
+}
+.datatable-nodata{
+    height: 40px;
+}

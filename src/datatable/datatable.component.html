@@ -1,0 +1,51 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-block">
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th *ngFor="let header of columns" [ngStyle]="{'width': header.width}" [ngClass]="header.className">
+                  <span>
+                        {{header.caption}}
+                    </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody *ngIf="gridOptions.totalItems > 0">
+              <tr *ngFor="let row of gridOptions.data">
+                <ng-template [ngTemplateOutlet]="rowTempl" [ngOutletContext]="{row: row}">
+                </ng-template>
+              </tr>
+            </tbody>
+            <tbody *ngIf="gridOptions.totalItems == 0">
+              <tr class="datatable-nodata">
+                <td [colSpan]="columns.length">
+                  <span class="watermark">No data available</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ul *ngIf="(pager.pages && pager.pages.length>0) && gridOptions.paging" class="pagination">
+            <li [class.disabled]="pager.currentPage == 1" class="page-item">
+              <a (click)="progressPaging(1)" class="page-link">First</a>
+            </li>
+            <li [class.disabled]="pager.currentPage == 1" class="page-item">
+              <a (click)="progressPaging(pager.currentPage - 1)" class="page-link">Previous</a>
+            </li>
+            <li *ngFor="let p of pager.pages" [class.active]="pager.currentPage == p" class="page-item">
+              <a (click)="progressPaging(p)" class="page-link">{{p}}</a>
+            </li>
+            <li [class.disabled]="pager.currentPage == pager.totalPages" class="page-item">
+              <a (click)="progressPaging(pager.currentPage + 1)" class="page-link">Next</a>
+            </li>
+            <li [class.disabled]="pager.currentPage == pager.totalPages" class="page-item">
+              <a (click)="progressPaging(pager.totalPages)" class="page-link">Last</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
